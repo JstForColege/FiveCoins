@@ -47,10 +47,11 @@ public class GameLogic : MonoBehaviour
     }
     public void MoveBack()
     {
+        if (moveHistory.Count == 0) return;
         MoveRecord last = moveHistory.Pop();
-        int square = slots[last.ToIndex].Last();
+        int coin = slots[last.ToIndex].Last();
         slots[last.ToIndex].RemoveAt(slots[last.ToIndex].Count - 1);
-        slots[last.FromIndex].Add(square);
+        slots[last.FromIndex].Add(coin);
     }
 
     public int FindLeftSquare(int index)
@@ -89,35 +90,36 @@ public class GameLogic : MonoBehaviour
         int current = index + 1;
         int spent = 0;
 
-        while (current <= 10 && spent < MAX_STEPS)
+        while (current < BOARD_SIZE && spent < MAX_STEPS)
         {
-            if (IsEmpty(current))
+            if (IsEmpty(current)) 
             {
-                current++;
-                continue;
+                current++; continue;
             }
+
             if (!IsDoubled(current))
             {
-                spent += 1;
+                spent++;
                 current++;
                 continue;
             }
+
             spent += 2;
             if (spent > MAX_STEPS) return -1;
 
             int next = current + 1;
 
-            if (next <= 10 && IsDoubled(next)) return next;
+            if (next < BOARD_SIZE && !IsDoubled(next)) return next;
             else return -1;
         }
         return -1;
     }
 
-    public void Move(int toIndex, int fromIndex)
+    public void Move(int fromIndex, int toIndex)
     {
-        AddSquare(toIndex, fromIndex);
-        moveHistory.Append(new MoveRecord(fromIndex, toIndex));
-        PopSquare(fromIndex);
+        int coin = PopSquare(fromIndex);
+        slots[toIndex].Add(coin);
+        moveHistory.Push(new MoveRecord(fromIndex, toIndex));
     }
 
     private bool IsDoubled(int index)
@@ -144,11 +146,6 @@ public class GameLogic : MonoBehaviour
         return coin;
     }
 
-    private void AddSquare(int toIndex, int fromIndex)
-    {
-        slots[toIndex].Add(fromIndex);
-    }
-
     public bool IsWin()
     {
         for(int i = 0; i< BOARD_SIZE; ++i)
@@ -156,5 +153,10 @@ public class GameLogic : MonoBehaviour
             if (!(IsDoubled(i))) return false;
         }
         return true;
+    }
+
+    public IReadOnlyList<int> GetSlot(int index)
+    {
+        return slots[index].AsReadOnly();
     }
 }
