@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BoardView : MonoBehaviour
 {
+    public bool canCkick = true;
     int rightSquare = -1;
     int leftSquare = -1;
     public int _activeSquare = -1;
@@ -22,46 +23,52 @@ public class BoardView : MonoBehaviour
 
     public void OnSquareClicked(int index)
     {
-        
-        if (gameLogic.IsEmpty(index) || gameLogic.IsDoubled(index))
-            return;
-
-        if (index == leftSquare || index == rightSquare)
+        if (canCkick == true)
         {
-            gameLogic.Move(_activeSquare, index);
-            UpdateBoard();
+            if (gameLogic.IsEmpty(index) || gameLogic.IsDoubled(index))
+            {
+                canCkick = false;
+                return;
+            }
+
+            if (index == leftSquare || index == rightSquare)
+            {
+                gameLogic.Move(_activeSquare, index);
+                UpdateBoard();
+                DisableActive(0.2f);
+                _activeSquare = -1;
+                leftSquare = rightSquare = -1;
+                canCkick = false;
+                return;
+            }
+
+            if (_activeSquare == -1)
+            {
+                _activeSquare = index;
+                ShowActiveSquare(index);
+                ShowWays(index);
+                canCkick = false;
+                return;
+            }
+
+            if (_activeSquare != index)
+            {
+                DisableActive(0.2f);
+                _activeSquare = index;
+                ShowActiveSquare(index);
+                ShowWays(index);
+                canCkick = false;
+                return;
+            }
+
             DisableActive(0.2f);
             _activeSquare = -1;
-            leftSquare = rightSquare = -1;
-            if (gameLogic.IsWin())
-                Debug.Log("Победа!");
-            return;
         }
-
-        if (_activeSquare == -1)
-        {
-            _activeSquare = index;
-            ShowActiveSquare(index);
-            ShowWays(index);
-            return;
-        }
-
-        if (_activeSquare != index)
-        {
-            DisableActive(0.2f);
-            _activeSquare = index;
-            ShowActiveSquare(index);
-            ShowWays(index);
-            return;
-        }
-
-        DisableActive(0.2f);
-        _activeSquare = -1;
     }
 
     public void ShowActiveSquare(int index)
     {
-        squares[index].gameObject.transform.DOLocalMoveY(squares[index].gameObject.transform.localPosition.y + 0.5f, 0.2f);
+        squares[index].gameObject.transform.DOLocalMoveY(squares[index].gameObject.transform.localPosition.y + 0.5f, 0.2f).OnComplete(() => { canCkick = true; });
     }
 
     public void MakeColorful(int index)
@@ -89,6 +96,7 @@ public class BoardView : MonoBehaviour
                 square.gameObject.transform.DOLocalMoveY(0, duration);
             }
         }
+        canCkick = true;
     }
 
     public void ResetSquares()
@@ -111,20 +119,10 @@ public class BoardView : MonoBehaviour
         if (rightSquare != -1 && rightSquare < 10) MakeColorful(rightSquare);
     }
 
-    bool DoubledSquare(int index)
-    {
-        foreach(var item in gameLogic.slots)
-        {
-            if (item[0] == index || item[1] == index)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void UpdateBoard()
     {
+
         for (int cellIndex = 0; cellIndex < 10; cellIndex++)
         {
             var slot = gameLogic.GetSlot(cellIndex);
@@ -133,9 +131,11 @@ public class BoardView : MonoBehaviour
                 int squareId = slot[layer];
                 GameObject square = squares[squareId];
                 Vector3 targetPos = new Vector3(cellIndex * 1.2f, layer * 1, 0);
-                square.transform.DOLocalMove(targetPos, 1f);
+                square.transform.DOLocalMove(targetPos, 1f).OnComplete(() => { canCkick = true; });
             }
         }
+        if (gameLogic.IsWin())
+            Debug.Log("Победа!");
     }
 
 

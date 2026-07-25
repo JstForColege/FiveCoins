@@ -183,12 +183,14 @@ public class GameLogic : MonoBehaviour
 
     public bool IsWin()
     {
+        int count = 0;
         for(int i = 0; i< BOARD_SIZE; ++i)
         {
-            if (!(IsDoubled(i))) return false;
+            if (IsDoubled(i)) count ++;
         }
-        Debug.Log("Вы выиграли!");
-        return true;
+        if (count == 5) { Debug.Log("Вы выиграли!"); return true; }
+        return false;
+        
     }
 
     public IReadOnlyList<int> GetSlot(int index)
