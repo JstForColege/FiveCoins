@@ -83,7 +83,7 @@ public class GameLogic : MonoBehaviour
             }
 
             spent += 2;
-            if (spent > MAX_STEPS) return -1;
+            if (spent >= MAX_STEPS) return -1;
 
             int next = current - 1;
 
@@ -131,7 +131,7 @@ public class GameLogic : MonoBehaviour
             }
 
             spent += 2;
-            if (spent > MAX_STEPS) return -1;
+            if (spent >= MAX_STEPS) return -1;
 
             int next = current + 1;
 
