@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 51000952}
   - component: {fileID: 51000956}
-  - component: {fileID: 51000955}
   - component: {fileID: 51000954}
   - component: {fileID: 51000953}
   m_Layer: 0
@@ -213,21 +212,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &51000955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51000951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 51000956}
-  highlightObject: {fileID: 51000951}
 --- !u!212 &51000956
 SpriteRenderer:
   serializedVersion: 2
@@ -383,6 +367,7 @@ RectTransform:
   m_Children:
   - {fileID: 1396753733}
   - {fileID: 365098999}
+  - {fileID: 1698996871}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -614,6 +599,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -739,6 +725,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.Physics2DRaycaster
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &558200263
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +751,6 @@ GameObject:
   m_Component:
   - component: {fileID: 558200264}
   - component: {fileID: 558200268}
-  - component: {fileID: 558200267}
   - component: {fileID: 558200266}
   - component: {fileID: 558200265}
   m_Layer: 0
@@ -833,21 +834,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &558200267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558200263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 558200268}
-  highlightObject: {fileID: 558200263}
 --- !u!212 &558200268
 SpriteRenderer:
   serializedVersion: 2
@@ -917,7 +903,6 @@ GameObject:
   m_Component:
   - component: {fileID: 558257959}
   - component: {fileID: 558257963}
-  - component: {fileID: 558257962}
   - component: {fileID: 558257961}
   - component: {fileID: 558257960}
   m_Layer: 0
@@ -1001,21 +986,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &558257962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558257958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 558257963}
-  highlightObject: {fileID: 558257958}
 --- !u!212 &558257963
 SpriteRenderer:
   serializedVersion: 2
@@ -1086,7 +1056,7 @@ GameObject:
   - component: {fileID: 792006546}
   - component: {fileID: 792006547}
   m_Layer: 0
-  m_Name: BoardManager
+  m_Name: BoardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1129,7 +1099,6 @@ GameObject:
   m_Component:
   - component: {fileID: 868068042}
   - component: {fileID: 868068046}
-  - component: {fileID: 868068045}
   - component: {fileID: 868068044}
   - component: {fileID: 868068043}
   m_Layer: 0
@@ -1213,21 +1182,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &868068045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868068041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 868068046}
-  highlightObject: {fileID: 868068041}
 --- !u!212 &868068046
 SpriteRenderer:
   serializedVersion: 2
@@ -1297,7 +1251,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1185465709}
   - component: {fileID: 1185465713}
-  - component: {fileID: 1185465712}
   - component: {fileID: 1185465711}
   - component: {fileID: 1185465710}
   m_Layer: 0
@@ -1381,21 +1334,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1185465712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185465708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 1185465713}
-  highlightObject: {fileID: 1185465708}
 --- !u!212 &1185465713
 SpriteRenderer:
   serializedVersion: 2
@@ -1886,9 +1824,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698996870}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -594, y: -324, z: -9720}
+  m_LocalScale: {x: 108, y: 108, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2117975305}
@@ -1901,7 +1839,7 @@ Transform:
   - {fileID: 868068042}
   - {fileID: 1185465709}
   - {fileID: 51000952}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 51357247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1739620798
 GameObject:
@@ -1913,7 +1851,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1739620799}
   - component: {fileID: 1739620803}
-  - component: {fileID: 1739620802}
   - component: {fileID: 1739620801}
   - component: {fileID: 1739620800}
   m_Layer: 0
@@ -1997,21 +1934,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1739620802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739620798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 1739620803}
-  highlightObject: {fileID: 1739620798}
 --- !u!212 &1739620803
 SpriteRenderer:
   serializedVersion: 2
@@ -2081,7 +2003,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1940745899}
   - component: {fileID: 1940745903}
-  - component: {fileID: 1940745902}
   - component: {fileID: 1940745901}
   - component: {fileID: 1940745900}
   m_Layer: 0
@@ -2165,21 +2086,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1940745902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940745898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 1940745903}
-  highlightObject: {fileID: 1940745898}
 --- !u!212 &1940745903
 SpriteRenderer:
   serializedVersion: 2
@@ -2249,7 +2155,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1952191754}
   - component: {fileID: 1952191758}
-  - component: {fileID: 1952191757}
   - component: {fileID: 1952191756}
   - component: {fileID: 1952191755}
   m_Layer: 0
@@ -2333,21 +2238,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1952191757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952191753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 1952191758}
-  highlightObject: {fileID: 1952191753}
 --- !u!212 &1952191758
 SpriteRenderer:
   serializedVersion: 2
@@ -2417,7 +2307,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2117975305}
   - component: {fileID: 2117975309}
-  - component: {fileID: 2117975308}
   - component: {fileID: 2117975307}
   - component: {fileID: 2117975306}
   m_Layer: 0
@@ -2501,21 +2390,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2117975308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117975304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 2117975309}
-  highlightObject: {fileID: 2117975304}
 --- !u!212 &2117975309
 SpriteRenderer:
   serializedVersion: 2
@@ -2585,7 +2459,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2138073285}
   - component: {fileID: 2138073289}
-  - component: {fileID: 2138073288}
   - component: {fileID: 2138073287}
   - component: {fileID: 2138073286}
   m_Layer: 0
@@ -2669,21 +2542,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2138073288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138073284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe0bb4a5da49324c902bea605caff9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SquareView
-  <Index>k__BackingField: 0
-  mainSprite: {fileID: 2138073289}
-  highlightObject: {fileID: 2138073284}
 --- !u!212 &2138073289
 SpriteRenderer:
   serializedVersion: 2
@@ -2751,4 +2609,3 @@ SceneRoots:
   - {fileID: 51357247}
   - {fileID: 159665101}
   - {fileID: 792006546}
-  - {fileID: 1698996871}

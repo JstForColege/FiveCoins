@@ -10,9 +10,18 @@ public class Square : MonoBehaviour
         boardView = FindFirstObjectByType<BoardView>();
     }
 
-    void OnMouseDown()
+    void Update()
     {
-        if (boardView != null)
-            boardView.OnSquareClicked(Index);
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            if (hit.collider != null && hit.collider.gameObject == gameObject)
+            {
+                Debug.Log("Клик по мне!");
+                if (boardView != null)
+                    boardView.OnSquareClicked(Index);
+            }
+        }
     }
 }
