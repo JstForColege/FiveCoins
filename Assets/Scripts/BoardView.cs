@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class BoardView : MonoBehaviour
 {
     public bool canCkick = true;
@@ -13,11 +15,17 @@ public class BoardView : MonoBehaviour
     public int _activeSquare = -1;
     public List<GameObject> squares;
     private GameLogic gameLogic;
-
-    
+    Button restartButton;
+    Button undoButton;
+    public GameObject winText;
 
     private void Start()
     {
+        undoButton = GameObject.Find("UndoBtn").GetComponent<Button>();
+        undoButton.interactable = false;
+        restartButton = GameObject.Find("RestartBtn").GetComponent<Button>();
+        restartButton.interactable = false;
+
         gameLogic = FindFirstObjectByType<GameLogic>();
     }
 
@@ -68,7 +76,7 @@ public class BoardView : MonoBehaviour
 
     public void ShowActiveSquare(int index)
     {
-        squares[index].gameObject.transform.DOLocalMoveY(squares[index].gameObject.transform.localPosition.y + 0.5f, 0.2f).OnComplete(() => { canCkick = true; });
+        squares[index].gameObject.transform.DOLocalMoveY(squares[index].gameObject.transform.localPosition.y + 0.5f, 0.2f).OnComplete(() => { canCkick = true; IsChanged(); });
     }
 
     public void MakeColorful(int index)
@@ -78,7 +86,6 @@ public class BoardView : MonoBehaviour
 
     public void DisableActive(float duration)
     {
-
         _activeSquare = -1;
         rightSquare = -1;
         leftSquare = -1;
@@ -101,12 +108,11 @@ public class BoardView : MonoBehaviour
 
     public void ResetSquares()
     {
-        Button restartButton = GameObject.Find("RestartBtn").GetComponent<Button>();
-        restartButton.interactable = false;
         gameLogic.Restart();
         UpdateBoard();
         DisableActive(1f);
         DOVirtual.DelayedCall(1f, () => restartButton.interactable = true);
+        winText.SetActive(false);
     }
 
     public void ShowWays(int index)
@@ -131,12 +137,38 @@ public class BoardView : MonoBehaviour
                 int squareId = slot[layer];
                 GameObject square = squares[squareId];
                 Vector3 targetPos = new Vector3(cellIndex * 1.2f, layer * 1, 0);
-                square.transform.DOLocalMove(targetPos, 1f).OnComplete(() => { canCkick = true; });
+                square.transform.DOLocalMove(targetPos, 1f).OnComplete(() => { canCkick = true;  IsChanged(); });
             }
         }
+        IsChanged();
         if (gameLogic.IsWin())
-            Debug.Log("Победа!");
+        {
+            winText.SetActive(true);
+        }
+
     }
 
+    public void Undo()
+    {
+        int lastSquare = gameLogic.GetLastMove();
+        squares[lastSquare].transform.DOLocalMove(new Vector3(lastSquare * 1.2f, 0), 1f).OnComplete(() => { canCkick = true; IsChanged(); });
+        gameLogic.MoveBack();
+        DisableActive(0.2f);
+        UpdateBoard();
+        winText.SetActive(false);
+    }
 
+    private void IsChanged()
+    {
+        if (gameLogic.IsGameStarted())
+        {
+            undoButton.interactable = true;
+            restartButton.interactable = true;
+        }
+        else
+        {
+            undoButton.interactable = false;
+            restartButton.interactable = false;
+        }
+    }
 }

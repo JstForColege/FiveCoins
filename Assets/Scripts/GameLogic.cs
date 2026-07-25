@@ -197,4 +197,11 @@ public class GameLogic : MonoBehaviour
     {
         return slots[index].AsReadOnly();
     }
+
+    public int GetLastMove() { return moveHistory.Peek().ToIndex; }
+    public bool IsGameStarted()
+    {
+        if (moveHistory.Count != 0) return true;
+        return false;
+    }
 }
