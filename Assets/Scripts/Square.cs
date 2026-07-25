@@ -18,7 +18,6 @@ public class Square : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
-                Debug.Log("Клик по мне!");
                 if (boardView != null)
                     boardView.OnSquareClicked(Index);
             }

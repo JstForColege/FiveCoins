@@ -8,7 +8,7 @@ public class GameLogic : MonoBehaviour
     private const int BOARD_SIZE = 10;
     private const int MAX_STEPS = 3;
 
-    private List<List<int>> slots;
+    public List<List<int>> slots;
 
     private Stack<MoveRecord> moveHistory;
 
@@ -61,6 +61,10 @@ public class GameLogic : MonoBehaviour
 
         while (current >= 0 && spent < MAX_STEPS)
         {
+            if (current < 0)
+            {
+                return -1;
+            }
             if (IsEmpty(current))
             {
                 current--;
@@ -69,7 +73,11 @@ public class GameLogic : MonoBehaviour
 
             if (!IsDoubled(current))
             {
-                spent += 1;
+                spent += 1; 
+                if (spent >= 3)
+                {
+                    return current;
+                }
                 current--;
                 continue;
             }
@@ -79,10 +87,20 @@ public class GameLogic : MonoBehaviour
 
             int next = current - 1;
 
-            if (next >= 0 && !IsDoubled(next)) return next;
+            if (next >= 0 && !IsDoubled(next) && !IsEmpty(next)) return next;
+            else if (next >= 0 && IsEmpty(next))
+            {
+                for(int i = next; i>0; i--)
+                {
+                    if (IsDoubled(i)) return -1;
+                    if (IsEmpty(i)) continue;
+                    return i;
+                }
+            }
             else return -1;
         }
-        return -1;
+
+        return current;
     }
 
     public int FindRightSquare(int index)
@@ -92,6 +110,10 @@ public class GameLogic : MonoBehaviour
 
         while (current < BOARD_SIZE && spent < MAX_STEPS)
         {
+            if(current > BOARD_SIZE)
+            {
+                return -1;
+            }
             if (IsEmpty(current)) 
             {
                 current++; continue;
@@ -100,6 +122,10 @@ public class GameLogic : MonoBehaviour
             if (!IsDoubled(current))
             {
                 spent++;
+                if(spent >= 3)
+                {
+                    return current;
+                }
                 current++;
                 continue;
             }
@@ -109,10 +135,19 @@ public class GameLogic : MonoBehaviour
 
             int next = current + 1;
 
-            if (next < BOARD_SIZE && !IsDoubled(next)) return next;
+            if (next >= 0 && !IsDoubled(next) && !IsEmpty(next)) return next;
+            else if (next >= 0 && IsEmpty(next))
+            {
+                for (int i = next; i < BOARD_SIZE; i++)
+                {
+                    if (IsDoubled(i)) return -1;
+                    if (IsEmpty(i)) continue;
+                    return i;
+                }
+            }
             else return -1;
         }
-        return -1;
+        return current;
     }
 
     public void Move(int fromIndex, int toIndex)
@@ -122,13 +157,13 @@ public class GameLogic : MonoBehaviour
         moveHistory.Push(new MoveRecord(fromIndex, toIndex));
     }
 
-    private bool IsDoubled(int index)
+    public bool IsDoubled(int index)
     {
         if (slots[index].Count == 2) return true;
         return false;
     }
 
-    private bool IsEmpty(int index)
+    public bool IsEmpty(int index)
     {
         if (slots[index].Count == 0) return true;
         return false;
@@ -152,6 +187,7 @@ public class GameLogic : MonoBehaviour
         {
             if (!(IsDoubled(i))) return false;
         }
+        Debug.Log("Вы выиграли!");
         return true;
     }
 

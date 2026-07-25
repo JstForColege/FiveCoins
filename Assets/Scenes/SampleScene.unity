@@ -1089,6 +1089,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1305a2f79fa33584d93ba74991071d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardView
+  _activeSquare: -1
+  squares:
+  - {fileID: 2117975304}
+  - {fileID: 1952191753}
+  - {fileID: 1739620798}
+  - {fileID: 2138073284}
+  - {fileID: 558200263}
+  - {fileID: 558257958}
+  - {fileID: 1940745898}
+  - {fileID: 868068041}
+  - {fileID: 1185465708}
+  - {fileID: 51000951}
 --- !u!1 &868068041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +1129,7 @@ Transform:
   m_GameObject: {fileID: 868068041}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.400001, y: 0, z: 0}
+  m_LocalPosition: {x: 8.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1615,7 +1627,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 792006547}
         m_TargetAssemblyTypeName: BoardView, Assembly-CSharp
-        m_MethodName: OnRestartButton
+        m_MethodName: ResetSquares
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2021,7 +2033,7 @@ Transform:
   m_GameObject: {fileID: 1940745898}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.2000003, y: 0, z: 0}
+  m_LocalPosition: {x: 7.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2145,6 +2157,50 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1949360646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1949360648}
+  - component: {fileID: 1949360647}
+  m_Layer: 0
+  m_Name: GameLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1949360647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949360646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 039059fd4d1dd4c48bdec7973cb50590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameLogic
+--- !u!4 &1949360648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949360646}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.15, y: 6.83, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1952191753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2477,7 +2533,7 @@ Transform:
   m_GameObject: {fileID: 2138073284}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6000001, y: 0, z: 0}
+  m_LocalPosition: {x: 3.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2609,3 +2665,4 @@ SceneRoots:
   - {fileID: 51357247}
   - {fileID: 159665101}
   - {fileID: 792006546}
+  - {fileID: 1949360648}
